@@ -1,2 +1,2 @@
-import ButtonTabs from '@/navigator/ButtonTabs';
+import ButtonTabs from '@/navigator/Stack';
 export default ButtonTabs;
