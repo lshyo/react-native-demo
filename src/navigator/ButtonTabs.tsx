@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Home from '../pages/home/index';
 import Monitoring from '../pages/monitoring';
@@ -18,14 +17,15 @@ const ButtonTabs = () => {
       tabBarPosition="bottom"
       screenOptions={{
         // tabBarIndicator: () => null,
+        tabBarPressColor: 'transparent',
         tabBarIndicatorStyle: {
           borderRadius: 50,
           backgroundColor: '#fff',
           padding: 10,
-          width: 35,
-          height: 35,
-          marginBottom: 7,
-          marginLeft: 12,
+          width: 40,
+          height: 40,
+          marginBottom: 4,
+          marginLeft: 10,
         },
         tabBarStyle: {
           borderRadius: 40,
@@ -33,7 +33,8 @@ const ButtonTabs = () => {
           marginTop: 15,
           marginBottom: 15,
           width: 180,
-          backgroundColor: '#f9f9f9',
+          elevation: 0, // android 阴影
+          backgroundColor: '#f6f6f6',
         },
       }}>
       <TabTop.Screen

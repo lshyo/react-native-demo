@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, Text, Alert} from 'react-native';
+import {View, StyleSheet, Text, ViewStyle} from 'react-native';
+import {layout} from '../../config/style';
+
 interface BlockProps {
+  style?: ViewStyle;
   children: React.ReactNode;
   title?: string;
 }
 const Block: React.FC<BlockProps> = props => {
   const {title} = props;
   return (
-    <View style={{...styles.container}}>
+    <View style={{...styles.container, ...props.style}}>
       {title && <Text style={styles.title}>{title}</Text>}
       <View style={{flex: 1}}>{props.children && props.children}</View>
     </View>
@@ -17,15 +20,12 @@ const Block: React.FC<BlockProps> = props => {
 const styles = StyleSheet.create({
   title: {
     fontSize: 12,
-    color: '#000',
+    color: '#606060',
     marginBottom: 20,
   },
   container: {
+    ...layout.margin,
     minHeight: 120,
-    marginTop: 15,
-    marginBottom: 0,
-    marginLeft: 15,
-    marginRight: 15,
     paddingTop: 15,
     paddingRight: 15,
     paddingBottom: 15,

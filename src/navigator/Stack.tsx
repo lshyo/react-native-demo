@@ -24,7 +24,11 @@ const Index = () => {
           headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
-        <Stack.Screen name="StackHome" component={ButtonTabs} />
+        <Stack.Screen
+          name="StackHome"
+          component={ButtonTabs}
+          options={{title: '厦门市'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

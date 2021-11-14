@@ -1,21 +1,16 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ViewStyle} from 'react-native';
 export const size = StyleSheet.create({
-  lageNumber: {
+  fontH1: {
     fontWeight: 'bold',
     fontSize: 24,
     color: '#000',
   },
-  lage1: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    color: '#000',
-  },
-  lage2: {
+  fontH2: {
     fontWeight: 'bold',
     fontSize: 16,
     color: '#696969',
   },
-  lage3: {
+  fontH3: {
     fontWeight: 'bold',
     fontSize: 14,
     color: '#696969',
@@ -24,12 +19,26 @@ export const size = StyleSheet.create({
     fontSize: 14,
     color: '#888888',
   },
+  small: {
+    fontSize: 12,
+    color: '#888888',
+  },
+  smaller: {
+    fontSize: 10,
+    color: '#888888',
+  },
   unit: {
     fontSize: 14,
     color: '#696969',
   },
 });
 export const layout = StyleSheet.create({
+  margin: {
+    marginTop: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 0,
+  },
   space: {
     marginBottom: 8,
   },
