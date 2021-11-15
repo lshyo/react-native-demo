@@ -3,3 +3,7 @@ export type RootStackList = {
   Monitoring: undefined;
   Setting: undefined;
 };
+export type RootStack = {
+  StackHome: undefined;
+  Location: undefined;
+};
