@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Alert, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {getHeaderTitle} from '@react-navigation/elements';
 import ButtonTabs from './ButtonTabs';
 import {IconMore} from '../assets/iconfont';
-import Location from '../pages/Location';
+import LocationPage from '../pages/Location';
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -13,16 +14,18 @@ import {
 } from '@react-navigation/stack';
 import {StackHeaderProps} from '@react-navigation/stack/lib/typescript/src/types';
 import {RootStack} from '@/navigator/type';
+import {RootState} from '@/models/type';
 
 export type NavigationProp = StackNavigationProp<RootStack>;
 const Stack = createStackNavigator<RootStack>();
 
 const MyHeader = ({navigation, route, options, back}: StackHeaderProps) => {
   const title = getHeaderTitle(options, route.name);
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       onPress={() => {
-        Alert.alert('123');
+        dispatch({type: 'test'});
       }}
       activeOpacity={1}
       style={styles.headerCont}>
@@ -35,6 +38,8 @@ const MyHeader = ({navigation, route, options, back}: StackHeaderProps) => {
   );
 };
 const Index = () => {
+  const {showLocation} = useSelector((state: RootState) => state.location);
+  const Page = !showLocation ? LocationPage : ButtonTabs;
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -46,15 +51,10 @@ const Index = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
         <Stack.Screen
-          name="StackHome"
-          component={ButtonTabs}
-          options={{title: '厦门市1'}}
+          name="Location"
+          component={Page}
+          options={{title: '厦门市'}}
         />
-        {/*<Stack.Screen*/}
-        {/*  name="Location"*/}
-        {/*  component={Location}*/}
-        {/*  options={{title: '厦门市'}}*/}
-        {/*/>*/}
       </Stack.Navigator>
     </NavigationContainer>
   );

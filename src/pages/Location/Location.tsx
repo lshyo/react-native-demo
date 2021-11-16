@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 const Location = () => {
   return (
     <View style={styles.locationContent}>
-      <Text>1</Text>
+      <Text>loactionPages</Text>
     </View>
   );
 };
