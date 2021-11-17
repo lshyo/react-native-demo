@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Alert, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Modal} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {getHeaderTitle} from '@react-navigation/elements';
@@ -25,7 +25,7 @@ const MyHeader = ({navigation, route, options, back}: StackHeaderProps) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        dispatch({type: 'test'});
+        dispatch({type: 'toggleLocationConfig'});
       }}
       activeOpacity={1}
       style={styles.headerCont}>
@@ -37,26 +37,42 @@ const MyHeader = ({navigation, route, options, back}: StackHeaderProps) => {
     </TouchableOpacity>
   );
 };
+
 const Index = () => {
   const {showLocation} = useSelector((state: RootState) => state.location);
-  const Page = !showLocation ? LocationPage : ButtonTabs;
+  const dispatch = useDispatch();
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          header: MyHeader,
-          // headerMode: 'float',
-          // headerTitleAlign: 'left',
-          headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}>
-        <Stack.Screen
-          name="Location"
-          component={Page}
-          options={{title: '厦门市'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            animationEnabled: true,
+            header: MyHeader,
+            headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          }}>
+          <Stack.Screen
+            name="Location"
+            component={ButtonTabs}
+            options={{
+              title: '厦门市',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <Modal transparent animationType="fade" visible={showLocation}>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch({type: 'toggleLocationConfig'});
+          }}
+          activeOpacity={1}>
+          <View style={styles.headerCont}>
+            <Text style={styles.headerText}>厦门市</Text>
+          </View>
+        </TouchableOpacity>
+        <LocationPage />
+      </Modal>
+    </>
   );
 };
 

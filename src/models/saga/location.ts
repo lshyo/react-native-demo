@@ -1,7 +1,5 @@
 import {put, call, select, takeEvery} from 'redux-saga/effects';
-import {Alert} from 'react-native';
-import {RootState} from '@/models/type';
-function* testInit() {
+function* showLocationConfig() {
   const {showLocation} = yield select(state => state.location);
   yield put({
     type: 'location',
@@ -11,6 +9,6 @@ function* testInit() {
   });
 }
 function* rootSaga() {
-  yield takeEvery('test', testInit);
+  yield takeEvery('toggleLocationConfig', showLocationConfig);
 }
 export default rootSaga;

@@ -21,5 +21,6 @@ module.exports = {
         extensions: ['.svg'],
       },
     ],
+    ['transform-require-context'],
   ],
 };
